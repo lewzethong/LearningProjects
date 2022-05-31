@@ -20,11 +20,9 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
-    car_manager.movement()
 
-    if car_manager.cars[-1].xcor() < 220:
-        for _ in range(random.randint(1, 3)):
-            car_manager.create_car()
+    car_manager.create_car()
+    car_manager.movement()
 
     # To remove cars from the list
     for car in car_manager.cars:
@@ -33,7 +31,7 @@ while game_is_on:
 
     # Detect collision with the cars
     for car in car_manager.cars:
-        if player.distance(car) < 30:
+        if player.distance(car) < 20:
             game_is_on = False
             scoreboard.game_over()
 
@@ -42,6 +40,8 @@ while game_is_on:
         scoreboard.increase_score()
         player.reset_position()
         car_manager.stage_clear()
+
+screen.exitonclick()
 
 
 
